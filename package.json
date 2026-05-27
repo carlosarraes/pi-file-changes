@@ -6,6 +6,7 @@
   "type": "module",
   "license": "MIT",
   "author": "carraes",
+  "keywords": ["pi-package", "pi-extension", "pdiff"],
   "files": ["src"],
   "pi": {
     "extensions": ["./src"]

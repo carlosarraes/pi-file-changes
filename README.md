@@ -4,7 +4,7 @@ A [Pi coding-agent](https://github.com/badlogic/pi-mono/tree/main/packages/codin
 
 ## What it does
 
-- `/fc` shows file changes
+- `/fc` shows file changes and lets you pick inline or pdiff review
 - `/fc-diff` opens all current review changes in [`pdiff`](https://github.com/carlosarraes/pdiff)
 - `/fc-accept` accepts Pi-tracked edits by clearing the log
 - `/fc-decline` declines Pi-tracked edits by restoring original file contents
