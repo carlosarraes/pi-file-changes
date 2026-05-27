@@ -8,6 +8,7 @@ A [Pi coding-agent](https://github.com/badlogic/pi-mono/tree/main/packages/codin
 - `/fc-diff` opens all current review changes in [`pdiff`](https://github.com/carlosarraes/pdiff)
 - `/fc-accept` accepts Pi-tracked edits by clearing the log
 - `/fc-decline` declines Pi-tracked edits by restoring original file contents
+- `fc_accept` lets the agent clear the log after successful commit/push workflows
 - In git repos, review uses git so it sees modified, staged, deleted, renamed, and untracked files
 - Accept/decline only affects files Pi touched through `edit` or `write`
 

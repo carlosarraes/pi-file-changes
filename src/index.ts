@@ -18,6 +18,7 @@ import {
 import { Container, Key, Markdown, SelectList, Text, matchesKey } from "@mariozechner/pi-tui";
 import type { SelectItem } from "@mariozechner/pi-tui";
 import { createTwoFilesPatch } from "diff";
+import { Type } from "typebox";
 
 const ENTRY_BASELINE = "filechanges:baseline";
 const ENTRY_CLEAR = "filechanges:clear";
@@ -258,7 +259,7 @@ export default function (pi: ExtensionAPI) {
 		});
 	}
 
-	async function clearLog(ctx: ExtensionCommandContext, reason: "accept" | "decline") {
+	async function clearLog(ctx: ExtensionContext | ExtensionCommandContext, reason: "accept" | "decline") {
 		baselines.clear();
 		tracked.clear();
 		pendingByToolCallId.clear();
@@ -708,6 +709,26 @@ export default function (pi: ExtensionAPI) {
 	pi.registerCommand("fc-decline", {
 		description: "Decline Pi-tracked changes (reverts files, clears log)",
 		handler: async (args, ctx) => declineAll(ctx, parseCommandArgs(args)),
+	});
+
+	pi.registerTool({
+		name: "fc_accept",
+		label: "Accept File Changes",
+		description: "Clear the pi-file-changes tracking log after the user has accepted, committed, or pushed the current Pi-made changes.",
+		promptSnippet: "Clear the pi-file-changes tracking log after accepted Pi-made changes are kept.",
+		promptGuidelines: [
+			"Use fc_accept after the user clearly asks to keep, commit, or push the current Pi-made changes and the requested action has succeeded.",
+			"Do not use fc_accept when the user is still reviewing changes or asks to revert/decline them.",
+		],
+		parameters: Type.Object({}),
+		async execute(_toolCallId, _params, _signal, _onUpdate, ctx) {
+			const count = tracked.size;
+			await clearLog(ctx, "accept");
+			return {
+				content: [{ type: "text", text: `Accepted ${count} Pi-tracked file change(s) and cleared the filechanges log.` }],
+				details: { accepted: count },
+			};
+		},
 	});
 
 	async function rebuildFromSession(ctx: ExtensionContext | any): Promise<void> {
