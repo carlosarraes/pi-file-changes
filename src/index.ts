@@ -508,7 +508,9 @@ export default function (pi: ExtensionAPI) {
 		try {
 			writeFileSync(inputPath, diff);
 			const result = spawnSync("pdiff", ["--input", inputPath, "--output", outputPath], {
-				stdio: "inherit",
+				// Keep stdin/stdout attached so pdiff can run its TUI, but capture stderr so
+				// harmless messages like "Wrote 0 comment(s) ..." do not land in Pi's prompt.
+				stdio: ["inherit", "inherit", "pipe"],
 				cwd: ctx.cwd,
 			});
 
