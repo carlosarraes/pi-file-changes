@@ -7,16 +7,16 @@ import type {
 	ExtensionAPI,
 	ExtensionCommandContext,
 	ExtensionContext,
-} from "@mariozechner/pi-coding-agent";
+} from "@earendil-works/pi-coding-agent";
 import {
 	DynamicBorder,
 	getMarkdownTheme,
 	isEditToolResult,
 	isToolCallEventType,
 	isWriteToolResult,
-} from "@mariozechner/pi-coding-agent";
-import { Container, Key, Markdown, SelectList, Text, matchesKey } from "@mariozechner/pi-tui";
-import type { SelectItem } from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-coding-agent";
+import { Container, Key, Markdown, SelectList, Text, matchesKey } from "@earendil-works/pi-tui";
+import type { SelectItem } from "@earendil-works/pi-tui";
 import { createTwoFilesPatch } from "diff";
 import { Type } from "typebox";
 

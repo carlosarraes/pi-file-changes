@@ -18,7 +18,7 @@ A [Pi coding-agent](https://github.com/badlogic/pi-mono/tree/main/packages/codin
 pi install git:github.com/carlosarraes/pi-file-changes
 ```
 
-Requires `@mariozechner/pi-coding-agent` and `@mariozechner/pi-tui` >= 0.49.0.
+Requires `@earendil-works/pi-coding-agent` and `@earendil-works/pi-tui` >= 0.49.0.
 
 For pdiff review:
 
